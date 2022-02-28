@@ -13,11 +13,17 @@ module Redmine
 
       def initialize(key)
         super()
-        @key = key
+        @keys = [key, "#{key}s"]
       end
 
       def decode(json)
-        ActiveSupport::JSON.decode(json)[@key]
+        response = nil
+        @keys.each do |key|
+          response = ActiveSupport::JSON.decode(json)[key]
+          break unless response.nil?
+        rescue
+        end
+        response
       end
     end
   end

@@ -10,6 +10,6 @@ module Redmine
   # This class represents a Redmine project.
   class Group < Redmine::Base
     has_many :users
-    self.format = Redmine::Format::JSON.new('groups')
+    self.format = Redmine::Format::JSON.new('group')
   end
 end

@@ -10,6 +10,6 @@ module Redmine
   # This class represents a Redmine project.
   class Project < Redmine::Base
     has_many :issues
-    self.format = Redmine::Format::JSON.new('projects')
+    self.format = Redmine::Format::JSON.new('project')
   end
 end

@@ -11,6 +11,6 @@ module Redmine
   class User < Redmine::Base
     has_many :issues
     has_many :groups
-    self.format = Redmine::Format::JSON.new('users')
+    self.format = Redmine::Format::JSON.new('user')
   end
 end
