@@ -13,7 +13,7 @@ module Redmine
 
       def initialize(key)
         super()
-        @keys = [key, "#{key}s"]
+        @keys = [key, key.gsub(/s$/, '')]
       end
 
       def decode(json)
@@ -21,8 +21,14 @@ module Redmine
         @keys.each do |key|
           response = ActiveSupport::JSON.decode(json)[key]
           break unless response.nil?
-        rescue
+        rescue StandardError => e
+          # Nothing to see here
         end
+
+        if response.nil?
+          raise ActiveResource::InvalidRequestError, "JSON response did not contain #{@keys.join(' or ')}"
+        end
+
         response
       end
     end

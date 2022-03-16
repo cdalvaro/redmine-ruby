@@ -9,8 +9,12 @@ module Redmine
   ##
   # This class represents a Redmine user.
   class User < Redmine::Base
+    ENDPOINT = 'users'
+    private_constant :ENDPOINT
+
     has_many :issues
     has_many :groups
-    self.format = Redmine::Format::JSON.new('user')
+
+    self.format = Redmine::Format::JSON.new(ENDPOINT)
   end
 end
